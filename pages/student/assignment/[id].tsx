@@ -82,7 +82,8 @@ export default function AssignmentTaker() {
         setAssignment(assignmentData);
 
         // Get or create homework session
-        const sessionData = await getOrCreateHomeworkSession(user.id, id);
+        const userID: string = user.id;
+        const sessionData = await getOrCreateHomeworkSession(userID, id);
         if (sessionData) {
           setSession(sessionData);
           setCurrentQuestion(sessionData.current_question_index);
@@ -326,18 +327,16 @@ export default function AssignmentTaker() {
                   <div
                     key={optionKey}
                     onClick={() => handleAnswer(option)}
-                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                      isSelected
-                        ? 'border-teal-500 bg-teal-50'
-                        : 'border-gray-200 hover:border-teal-300'
-                    }`}
+                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${isSelected
+                      ? 'border-teal-500 bg-teal-50'
+                      : 'border-gray-200 hover:border-teal-300'
+                      }`}
                   >
                     <div className="flex items-center">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${
-                        isSelected
-                          ? 'bg-teal-500 text-white'
-                          : 'bg-gray-100 text-gray-400'
-                      }`}>
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${isSelected
+                        ? 'bg-teal-500 text-white'
+                        : 'bg-gray-100 text-gray-400'
+                        }`}>
                         {isSelected ? (
                           <CheckIcon size={14} />
                         ) : (
@@ -385,18 +384,16 @@ export default function AssignmentTaker() {
                   <div
                     key={optionKey}
                     onClick={() => handleTickboxAnswer(option)}
-                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                      isSelected
-                        ? 'border-teal-500 bg-teal-50'
-                        : 'border-gray-200 hover:border-teal-300'
-                    }`}
+                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${isSelected
+                      ? 'border-teal-500 bg-teal-50'
+                      : 'border-gray-200 hover:border-teal-300'
+                      }`}
                   >
                     <div className="flex items-start space-x-3">
-                      <div className={`w-5 h-5 border-2 rounded flex-shrink-0 mt-0.5 flex items-center justify-center ${
-                        isSelected
-                          ? 'border-teal-500 bg-teal-500'
-                          : 'border-gray-300'
-                      }`}>
+                      <div className={`w-5 h-5 border-2 rounded flex-shrink-0 mt-0.5 flex items-center justify-center ${isSelected
+                        ? 'border-teal-500 bg-teal-500'
+                        : 'border-gray-300'
+                        }`}>
                         {isSelected && (
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -547,11 +544,10 @@ export default function AssignmentTaker() {
               <button
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
-                className={`flex items-center px-4 py-2 rounded-lg ${
-                  currentQuestion === 0
-                    ? 'text-gray-400 cursor-not-allowed'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`flex items-center px-4 py-2 rounded-lg ${currentQuestion === 0
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 <ArrowLeftIcon size={16} className="mr-2" />
                 Previous
@@ -561,11 +557,10 @@ export default function AssignmentTaker() {
                 <button
                   onClick={handleNext}
                   disabled={!question || !isQuestionAnswered(question.id)}
-                  className={`flex items-center px-6 py-2 rounded-lg ${
-                    !question || !isQuestionAnswered(question.id)
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : 'bg-teal-500 text-white hover:bg-teal-600'
-                  }`}
+                  className={`flex items-center px-6 py-2 rounded-lg ${!question || !isQuestionAnswered(question.id)
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-teal-500 text-white hover:bg-teal-600'
+                    }`}
                 >
                   Next
                   <ArrowRightIcon size={16} className="ml-2" />
@@ -574,11 +569,10 @@ export default function AssignmentTaker() {
                 <button
                   onClick={handleSubmit}
                   disabled={!areAllQuestionsAnswered() || isSubmitting}
-                  className={`flex items-center px-6 py-2 rounded-lg ${
-                    !areAllQuestionsAnswered() || isSubmitting
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : 'bg-green-500 text-white hover:bg-green-600'
-                  }`}
+                  className={`flex items-center px-6 py-2 rounded-lg ${!areAllQuestionsAnswered() || isSubmitting
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-green-500 text-white hover:bg-green-600'
+                    }`}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Assignment'}
                   {!isSubmitting && <CheckIcon size={16} className="ml-2" />}
