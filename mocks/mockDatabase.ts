@@ -30,15 +30,15 @@ export const mockSupabase = {
   // Auth methods
   auth: {
     getUser: async () => {
-      await simulateNetworkDelay();
-      simulateNetworkFailure();
+      // await simulateNetworkDelay();
+      // simulateNetworkFailure();
       return {
         data: { user: mockUser },
         error: null
       };
     },
     getSession: async () => {
-      await simulateNetworkDelay();
+      // await simulateNetworkDelay();
       return {
         data: { session: { user: mockUser } },
         error: null
@@ -52,7 +52,7 @@ export const mockSupabase = {
       return {
         data: {
           subscription: {
-            unsubscribe: () => {}
+            unsubscribe: () => { }
           }
         }
       };
@@ -67,8 +67,8 @@ export const mockSupabase = {
           eq: (column: string, value: any) => {
             const eqBuilder = {
               single: async () => {
-                await simulateNetworkDelay();
-                simulateNetworkFailure();
+                // await simulateNetworkDelay();
+                // simulateNetworkFailure();
 
                 // Return mock data based on table
                 if (table === 'homework_sessions') {
@@ -80,7 +80,7 @@ export const mockSupabase = {
                 return { data: null, error: { message: 'Not found' } };
               },
               maybeSingle: async () => {
-                await simulateNetworkDelay();
+                // await simulateNetworkDelay();
                 if (table === 'homework_sessions') {
                   return { data: mockSession, error: null };
                 }
@@ -88,14 +88,14 @@ export const mockSupabase = {
               },
               limit: (count: number) => ({
                 single: async () => {
-                  await simulateNetworkDelay();
+                  // await simulateNetworkDelay();
                   return { data: mockSession, error: null };
                 }
               }),
               order: (column: string, options: any) => ({
                 limit: (count: number) => ({
                   single: async () => {
-                    await simulateNetworkDelay();
+                    // await simulateNetworkDelay();
                     return { data: mockSession, error: null };
                   }
                 })
@@ -110,8 +110,8 @@ export const mockSupabase = {
       insert: (data: any) => ({
         select: () => ({
           single: async () => {
-            await simulateNetworkDelay();
-            simulateNetworkFailure();
+            // await simulateNetworkDelay();
+            // simulateNetworkFailure();
 
             // Create new session or response
             if (table === 'homework_sessions') {
@@ -124,8 +124,8 @@ export const mockSupabase = {
 
       update: (data: any) => ({
         eq: async (column: string, value: any) => {
-          await simulateNetworkDelay();
-          simulateNetworkFailure();
+          // await simulateNetworkDelay();
+          // simulateNetworkFailure();
 
           // Update session or response
           return { error: null };
@@ -133,8 +133,8 @@ export const mockSupabase = {
       }),
 
       upsert: async (data: any, options?: any) => {
-        await simulateNetworkDelay();
-        simulateNetworkFailure();
+        // await simulateNetworkDelay();
+        // simulateNetworkFailure();
 
         // Save response to mock storage
         if (table === 'homework_responses') {
@@ -150,8 +150,8 @@ export const mockSupabase = {
 
   // RPC methods (for database functions)
   rpc: async (functionName: string, params: any) => {
-    await simulateNetworkDelay();
-    simulateNetworkFailure();
+    // await simulateNetworkDelay();
+    // simulateNetworkFailure();
     return { data: null, error: null };
   }
 };
